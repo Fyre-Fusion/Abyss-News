@@ -27,16 +27,65 @@ body {
 .container {
   max-width: 900px;
   margin: auto;
-  padding: 60px 30px;
+  padding: 100px 30px 60px;
+}
+
+/* ---------- IMAGE ---------- */
+.hero-image {
+  display: block;
+  margin: 0 auto 50px;
+  max-width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 0 35px rgba(138,43,226,0.35);
+}
+
+/* ---------- PULSE ---------- */
+@keyframes pulse {
+  0% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 0.6; transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 2.2s infinite ease-in-out;
 }
 
 /* ---------- HEADER ---------- */
 h1 {
   text-align: center;
-  font-size: 44px;
+  font-size: 46px;
   letter-spacing: 2px;
   color: var(--accent-primary);
-  margin-bottom: 70px;
+  margin-bottom: 10px;
+}
+
+.server-name {
+  text-align: center;
+  font-size: 22px;
+  color: var(--accent-secondary);
+  margin-bottom: 60px;
+}
+
+/* ---------- ABOUT ---------- */
+.about-title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: var(--accent-primary);
+}
+
+.about-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 30px;
+  margin-bottom: 60px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+.about-card p {
+  color: var(--text-muted);
+  line-height: 1.8;
 }
 
 /* ---------- SECTIONS ---------- */
@@ -64,7 +113,6 @@ details {
   border-radius: 10px;
   padding: 18px 22px;
   border-left: 4px solid var(--accent-secondary);
-  transition: all 0.3s ease;
 }
 
 details[open] {
@@ -88,18 +136,6 @@ details p {
   color: var(--text-muted);
   line-height: 1.7;
 }
-
-/* ---------- TEXT ---------- */
-p {
-  font-size: 16px;
-}
-
-/* ---------- FOOTER FADE ---------- */
-body::after {
-  content: "";
-  display: block;
-  height: 80px;
-}
 </style>
 </head>
 
@@ -107,16 +143,27 @@ body::after {
 
 <div class="container">
 
+  <!-- IMAGE -->
+  <img src="abyss-pic.png" alt="Abyss Artwork" class="hero-image">
+
   <h1>OFFICIAL ABYSS WIKI</h1>
+  <div class="server-name pulse">Abyss Server</div>
+
+  <div class="about-title pulse">About The Server</div>
+  <div class="about-card">
+    <p>
+      Abyss Server is a dark-themed, community-driven experience focused on
+      immersive gameplay, fairness, and long-term progression.
+      Our goal is to provide a stable, engaging environment where players
+      can explore, compete, and grow together.
+    </p>
+  </div>
 
   <section>
     <h2>Maintenance</h2>
     <details>
       <summary>No Current Notices</summary>
-      <p>
-        There are currently no scheduled or ongoing maintenance operations.
-        Any future downtime will be announced here.
-      </p>
+      <p>No maintenance is currently scheduled.</p>
     </details>
   </section>
 
@@ -124,10 +171,7 @@ body::after {
     <h2>Events</h2>
     <details>
       <summary>No Active Events</summary>
-      <p>
-        No events are running at this time. Check back regularly for
-        announcements and limited-time activities.
-      </p>
+      <p>No events are running at this time.</p>
     </details>
   </section>
 
@@ -135,10 +179,7 @@ body::after {
     <h2>Updates</h2>
     <details>
       <summary>No Recent Updates</summary>
-      <p>
-        There are no recent updates available. Patch notes and changes
-        will be documented here when released.
-      </p>
+      <p>No updates are available right now.</p>
     </details>
   </section>
 
@@ -146,10 +187,7 @@ body::after {
     <h2>Staff Applications</h2>
     <details>
       <summary>Applications Closed</summary>
-      <p>
-        Staff applications are currently closed.
-        Openings will be announced when positions become available.
-      </p>
+      <p>Staff applications are currently closed.</p>
     </details>
   </section>
 
