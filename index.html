@@ -193,7 +193,7 @@ h1 {
       <span>Maintenance</span>
     </div>
     <div class="icon-box" onclick="openModal('eventsModal')">
-      <i class="fas fa-cake-candles"></i> <!-- party vibe -->
+      <i class="fas fa-cake-candles"></i>
       <span>Events</span>
     </div>
     <div class="icon-box" onclick="openModal('updatesModal')">
@@ -203,6 +203,10 @@ h1 {
     <div class="icon-box" onclick="openModal('staffModal')">
       <i class="fas fa-user-shield"></i>
       <span>Staff</span>
+    </div>
+    <div class="icon-box" onclick="openModal('modModal')">
+      <i class="fas fa-crown"></i>
+      <span>Mod of the Week</span>
     </div>
   </div>
 </div>
@@ -240,24 +244,30 @@ h1 {
   </div>
 </div>
 
+<div class="modal" id="modModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal('modModal')">X</button>
+    <h2>Mod of the Week</h2>
+    <p>This week’s outstanding moderator is <strong>UsernameHere</strong>! 🎉
+       Thank you for keeping the server safe and fun for everyone.</p>
+  </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // ensure all modals hidden on load
   const modals = document.querySelectorAll('.modal');
   modals.forEach(m => m.classList.remove('show'));
 });
 
 function openModal(id) {
-  const modal = document.getElementById(id);
-  modal.classList.add('show');
+  document.getElementById(id).classList.add('show');
 }
 
 function closeModal(id) {
-  const modal = document.getElementById(id);
-  modal.classList.remove('show');
+  document.getElementById(id).classList.remove('show');
 }
 
-// close modal when clicking outside content
+// Close modal when clicking outside content
 window.addEventListener('click', function(e){
   const modals = document.querySelectorAll('.modal');
   modals.forEach(modal => {
