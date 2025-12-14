@@ -22,6 +22,7 @@ body {
   background: linear-gradient(270deg, #0b0d12, #1a1c28, #0b0d12);
   background-size: 600% 600%;
   animation: gradientBG 20s ease infinite;
+  position: relative;
 }
 
 @keyframes gradientBG {
@@ -37,170 +38,33 @@ body {
   text-align: center;
 }
 
-h1 {
-  font-size: 48px;
-  color: var(--accent-primary);
-  margin-bottom: 10px;
-  animation: pulse 2s infinite;
-}
+h1 { font-size: 48px; color: var(--accent-primary); margin-bottom: 10px; animation: pulse 2s infinite; }
+.server-name { font-size: 22px; color: var(--accent-secondary); margin-bottom: 50px; animation: pulse 2s infinite alternate; }
+.about-title { font-size: 30px; color: var(--accent-primary); margin-bottom: 20px; animation: pulse 2s infinite alternate-reverse; }
+@keyframes pulse { 0% { text-shadow: 0 0 5px var(--accent-primary),0 0 10px var(--accent-secondary);} 50% { text-shadow:0 0 15px var(--accent-primary),0 0 25px var(--accent-secondary);} 100% {text-shadow:0 0 5px var(--accent-primary),0 0 10px var(--accent-secondary);} }
 
-.server-name {
-  font-size: 22px;
-  color: var(--accent-secondary);
-  margin-bottom: 50px;
-  animation: pulse 2s infinite alternate;
-}
-
-.about-title {
-  font-size: 30px;
-  color: var(--accent-primary);
-  margin-bottom: 20px;
-  animation: pulse 2s infinite alternate-reverse;
-}
-
-@keyframes pulse {
-  0% { text-shadow: 0 0 5px var(--accent-primary), 0 0 10px var(--accent-secondary);}
-  50% { text-shadow: 0 0 15px var(--accent-primary), 0 0 25px var(--accent-secondary);}
-  100% { text-shadow: 0 0 5px var(--accent-primary), 0 0 10px var(--accent-secondary);}
-}
-
-.about-card {
-  background: var(--bg-card);
-  border-radius: 14px;
-  padding: 25px;
-  margin-bottom: 50px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-}
-
-.about-card p {
-  color: var(--text-muted);
-  line-height: 1.7;
-}
+.about-card { background: var(--bg-card); border-radius: 14px; padding: 25px; margin-bottom: 50px; box-shadow: 0 8px 20px rgba(0,0,0,0.35);}
+.about-card p { color: var(--text-muted); line-height: 1.7; }
 
 /* ---------- ICON GRID ---------- */
-.icon-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  margin-bottom: 50px;
-}
-
-.icon-box {
-  background: var(--bg-card);
-  border-radius: 16px;
-  width: 150px;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.35);
-  transition: transform 0.3s, box-shadow 0.3s;
-  position: relative;
-}
-
-.icon-box:hover {
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-}
-
-.icon-box i {
-  font-size: 48px;
-  margin-bottom: 10px;
-  color: var(--accent-secondary);
-  animation: iconFloat 3s ease-in-out infinite;
-}
-
-.icon-box:hover i {
-  animation: iconBounce 0.6s ease infinite alternate;
-}
-
-.icon-box span {
-  font-size: 18px;
-  color: var(--text-main);
-  font-weight: bold;
-}
-
-@keyframes iconFloat {
-  0% { transform: translateY(0);}
-  50% { transform: translateY(-6px);}
-  100% { transform: translateY(0);}
-}
-
-@keyframes iconBounce {
-  0% { transform: translateY(0);}
-  50% { transform: translateY(-10px);}
-  100% { transform: translateY(0);}
-}
+.icon-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; margin-bottom: 50px;}
+.icon-box { background: var(--bg-card); border-radius: 16px; width: 150px; height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; box-shadow:0 5px 18px rgba(0,0,0,0.35); transition: transform 0.3s, box-shadow 0.3s; position: relative;}
+.icon-box:hover { transform: translateY(-8px) scale(1.05); box-shadow:0 12px 30px rgba(0,0,0,0.6);}
+.icon-box i { font-size:48px; margin-bottom:10px; color: var(--accent-secondary); animation: iconFloat 3s ease-in-out infinite;}
+.icon-box:hover i { animation: iconBounce 0.6s ease infinite alternate;}
+.icon-box span { font-size:18px; color: var(--text-main); font-weight:bold; }
+@keyframes iconFloat {0%{transform:translateY(0);}50%{transform:translateY(-6px);}100%{transform:translateY(0);}}
+@keyframes iconBounce {0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 
 /* ---------- MODAL ---------- */
-.modal {
-  visibility: hidden;
-  opacity: 0;
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(11,13,18,0.85);
-  backdrop-filter: blur(4px);
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.modal.show {
-  visibility: visible;
-  opacity: 1;
-}
-
-.modal-content {
-  background: var(--bg-card);
-  border-radius: 14px;
-  padding: 25px;
-  max-width: 600px;
-  width: 90%;
-  position: relative;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-  text-align: left;
-  transform: scale(0.8);
-  transition: transform 0.3s ease;
-}
-
-.modal.show .modal-content {
-  transform: scale(1);
-}
-
-.modal-content h2 {
-  color: var(--accent-secondary);
-  margin-top: 0;
-}
-
-.modal-content p {
-  color: var(--text-muted);
-  line-height: 1.7;
-}
-
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 15px;
-  background: var(--accent-primary);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 4px 10px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.close-btn:hover {
-  background: var(--accent-success);
-}
+.modal { visibility: hidden; opacity: 0; display:flex; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(11,13,18,0.85); backdrop-filter: blur(4px); align-items:center; justify-content:center; z-index:1000; transition: opacity 0.3s ease, visibility 0.3s ease;}
+.modal.show { visibility: visible; opacity: 1; }
+.modal-content { background: var(--bg-card); border-radius: 14px; padding: 25px; max-width: 600px; width:90%; position: relative; box-shadow:0 8px 25px rgba(0,0,0,0.6); text-align:left; transform: scale(0.8); transition: transform 0.3s ease; }
+.modal.show .modal-content { transform: scale(1); }
+.modal-content h2 { color: var(--accent-secondary); margin-top:0;}
+.modal-content p { color: var(--text-muted); line-height:1.7;}
+.close-btn { position:absolute; top:12px; right:15px; background: var(--accent-primary); color:white; border:none; border-radius:6px; padding:4px 10px; cursor:pointer; font-weight:bold;}
+.close-btn:hover { background: var(--accent-success); }
 
 /* ---------- GIANT CAT ---------- */
 #giantCat {
@@ -208,7 +72,7 @@ h1 {
   position: fixed;
   top: 50%;
   left: 50%;
-  font-size: 50vw; /* MASSIVE, almost fullscreen */
+  font-size: 55vw; 
   transform: translate(-50%, -50%);
   text-align: center;
   color: #ffcc00;
@@ -216,22 +80,21 @@ h1 {
   user-select: none;
   transition: opacity 0.3s ease;
 }
-#catText {
-  font-size: 4vw;
-  color: #ffffff;
-  margin-top: -8vw; /* positions text inside emoji area */
-}
+#catText { font-size:4vw; color:white; margin-top:-10vw; }
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:600px){
-  .icon-box { width: 130px; height: 130px;}
-  .icon-box i { font-size: 40px;}
-  h1 { font-size: 40px;}
-  .server-name { font-size: 20px;}
-  .about-title { font-size: 26px;}
-  #giantCat { font-size: 35vw; }
-  #catText { font-size: 5vw; margin-top: -6vw; }
+  .icon-box { width:130px; height:130px; }
+  .icon-box i { font-size:40px; }
+  h1 { font-size:40px; }
+  .server-name { font-size:20px; }
+  .about-title { font-size:26px; }
+  #giantCat { font-size:40vw; }
+  #catText { font-size:5vw; margin-top:-7vw; }
 }
+
+/* ---------- HIDDEN CORNER ---------- */
+#hiddenCorner { position: fixed; top:0; left:0; width:50px; height:50px; z-index:100; }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -244,7 +107,7 @@ h1 {
   <div class="about-title">About The Server</div>
   <div class="about-card">
     <p>
-    Abyss is a friendly Discord server where you can chat, hang out, and have fun. Its legendary bot, Bob, powers a popular fishing game and once soloed an entire raid! The members and staff are welcoming and supportive, keeping the server safe and enjoyable. With lively discussions, fun events, games, and chances to meet new friends, Abyss is a place where everyone can belong. Join today and dive into the laughter, fun, and adventure waiting for you!
+      Abyss is a friendly Discord server where you can chat, hang out, and have fun. Its legendary bot, Bob, powers a popular fishing game and once soloed an entire raid! The members and staff are welcoming and supportive, keeping the server safe and enjoyable. With lively discussions, fun events, games, and chances to meet new friends, Abyss is a place where everyone can belong. Join today and dive into the laughter, fun, and adventure waiting for you!
     </p>
   </div>
 
@@ -271,83 +134,69 @@ h1 {
       <span>Mod of the Week</span>
     </div>
   </div>
-
-  <!-- Hidden Easter Egg Button -->
-  <button class="easter-egg-btn" id="eggBtn" style="display:none;" onclick="showCat()"></button>
 </div>
 
 <!-- MODALS -->
 <div class="modal" id="maintenanceModal">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeModal('maintenanceModal')">X</button>
-    <h2>Maintenance</h2>
-    <p>No maintenance is currently scheduled.</p>
+  <div class="modal-content"><button class="close-btn" onclick="closeModal('maintenanceModal')">X</button>
+    <h2>Maintenance</h2><p>No maintenance is currently scheduled.</p>
   </div>
 </div>
-
 <div class="modal" id="eventsModal">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeModal('eventsModal')">X</button>
-    <h2>Events</h2>
-    <p>4 Invites = 2 Shoorbino (PvB) Use this link to avail! -https://discord.com/events/1386748629842264085/1437036680119848970</p>
+  <div class="modal-content"><button class="close-btn" onclick="closeModal('eventsModal')">X</button>
+    <h2>Events</h2><p>4 Invites = 2 Shoorbino (PvB) Use this link to avail! -https://discord.com/events/1386748629842264085/1437036680119848970</p>
   </div>
 </div>
-
 <div class="modal" id="updatesModal">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeModal('updatesModal')">X</button>
-    <h2>Updates</h2>
-    <p>No updates are available right now.</p>
+  <div class="modal-content"><button class="close-btn" onclick="closeModal('updatesModal')">X</button>
+    <h2>Updates</h2><p>No updates are available right now.</p>
   </div>
 </div>
-
 <div class="modal" id="staffModal">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeModal('staffModal')">X</button>
-    <h2>Staff Applications</h2>
-    <p>Staff applications are currently closed.</p>
+  <div class="modal-content"><button class="close-btn" onclick="closeModal('staffModal')">X</button>
+    <h2>Staff Applications</h2><p>Staff applications are currently closed.</p>
   </div>
 </div>
-
 <div class="modal" id="modModal">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeModal('modModal')">X</button>
-    <h2>Mod of the Week</h2>
-    <p>This week’s outstanding moderator is <strong>｡ﾟ•⚔ 𝓒𝓻𝓲𝓽𝓲𝓬𝓪𝓵 ⚔•ﾟ｡</strong>! 🎉 Thank you for keeping the server safe and fun for everyone.</p>
+  <div class="modal-content"><button class="close-btn" onclick="closeModal('modModal')">X</button>
+    <h2>Mod of the Week</h2><p>This week’s outstanding moderator is <strong>｡ﾟ•⚔ 𝓒𝓻𝓲𝓽𝓲𝓬𝓪𝓵 ⚔•ﾟ｡</strong>! 🎉 Thank you for keeping the server safe and fun for everyone.</p>
   </div>
 </div>
 
-<!-- GIANT CAT EASTER EGG -->
-<div id="giantCat">
-  🐱
-  <div id="catText">Lemme play fisch with my cat friends</div>
-</div>
+<!-- GIANT CAT -->
+<div id="giantCat">🐱<div id="catText">Lemme play fisch with my cat friends</div></div>
+
+<!-- HIDDEN CORNER CLICK AREA -->
+<div id="hiddenCorner"></div>
 
 <script>
-/* ---------- MODAL FUNCTIONS ---------- */
+/* ---------- MODALS ---------- */
 const openModal = id => document.getElementById(id).classList.add('show');
 const closeModal = id => document.getElementById(id).classList.remove('show');
-window.addEventListener('click', e => {
-  if(e.target.classList.contains('modal')) e.target.classList.remove('show');
-});
+window.addEventListener('click', e => { if(e.target.classList.contains('modal')) e.target.classList.remove('show'); });
 
-/* ---------- EASTER EGG ---------- */
+/* ---------- GIANT CAT ---------- */
 const giantCat = document.getElementById('giantCat');
-const eggBtn = document.getElementById('eggBtn');
+let cornerClicks = 0;
 
 function showCat() {
   giantCat.style.display = 'block';
   giantCat.style.opacity = '1';
 }
 
-// Hide cat if clicked anywhere except the cat itself
 window.addEventListener('click', e => {
-  if (!giantCat.contains(e.target) && e.target !== eggBtn) {
+  if (!giantCat.contains(e.target)) {
     giantCat.style.opacity = '0';
-    setTimeout(() => { giantCat.style.display = 'none'; }, 300);
+    setTimeout(()=>{ giantCat.style.display='none'; }, 300);
   }
 });
-</script>
 
+/* ---------- HIDDEN CORNER ---------- */
+const hiddenCorner = document.getElementById('hiddenCorner');
+hiddenCorner.addEventListener('click', e => {
+  cornerClicks++;
+  if(cornerClicks >= 3) { showCat(); cornerClicks = 0; }
+});
+</script>
 </body>
 </html>
