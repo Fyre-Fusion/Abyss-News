@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Official Abyss News</title>
+
+  <style>
+    body {
+      background-color: #0b0b0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #8a2be2;
+      letter-spacing: 2px;
+    }
+
+    #newsBox {
+      background: #111;
+      padding: 20px;
+      border-left: 4px solid #8a2be2;
+      margin-top: 20px;
+      min-height: 100px;
+    }
+
+    #editor {
+      display: none;
+      margin-top: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      background: #0f0f14;
+      color: white;
+      border: 1px solid #444;
+      padding: 10px;
+      font-size: 15px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #8a2be2;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #6a1bbd;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>OFFICIAL ABYSS NEWS</h1>
+
+  <div id="newsBox">
+    <p id="newsText">No official updates at this time.</p>
+  </div>
+
+  <button onclick="unlockEditor()">Edit (Staff Only)</button>
+
+  <div id="editor">
+    <textarea id="newsInput"></textarea>
+    <br>
+    <button onclick="saveNews()">Save Update</button>
+  </div>
+
+  <script>
+    // 🔑 SECRET KEY
+    const SECRET_KEY = "123098";
+
+    function unlockEditor() {
+      const key = prompt("Enter staff access key:");
+      if (key === SECRET_KEY) {
+        document.getElementById("editor").style.display = "block";
+        document.getElementById("newsInput").value =
+          document.getElementById("newsText").innerText;
+      } else {
+        alert("Access denied.");
+      }
+    }
+
+    function saveNews() {
+      document.getElementById("newsText").innerText =
+        document.getElementById("newsInput").value;
+    }
+  </script>
+
+</body>
+</html>
