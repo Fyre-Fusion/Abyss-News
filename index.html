@@ -11,7 +11,7 @@
   --accent-secondary: #00bfff;
   --accent-success: #32cd32;
   --text-main: #f0f0f0;
-  --text-muted: #a0a0a0;
+  --text-muted: #b0b0b0;
 }
 
 /* ---------- GLOBAL ---------- */
@@ -33,26 +33,26 @@ body {
 .container {
   max-width: 1000px;
   margin: auto;
-  padding: 100px 20px 60px;
+  padding: 80px 20px 40px;
   text-align: center;
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 48px;
   color: var(--accent-primary);
   margin-bottom: 10px;
   animation: pulse 2s infinite;
 }
 
 .server-name {
-  font-size: 24px;
+  font-size: 22px;
   color: var(--accent-secondary);
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   animation: pulse 2s infinite alternate;
 }
 
 .about-title {
-  font-size: 32px;
+  font-size: 30px;
   color: var(--accent-primary);
   margin-bottom: 20px;
   animation: pulse 2s infinite alternate-reverse;
@@ -67,14 +67,14 @@ h1 {
 .about-card {
   background: var(--bg-card);
   border-radius: 14px;
-  padding: 30px;
-  margin-bottom: 60px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  padding: 25px;
+  margin-bottom: 50px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
 .about-card p {
   color: var(--text-muted);
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
 /* ---------- ICON GRID ---------- */
@@ -82,32 +82,32 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
-  margin-bottom: 60px;
+  gap: 25px;
+  margin-bottom: 50px;
 }
 
 .icon-box {
   background: var(--bg-card);
   border-radius: 16px;
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  box-shadow: 0 5px 18px rgba(0,0,0,0.35);
   transition: transform 0.3s, box-shadow 0.3s;
   position: relative;
 }
 
 .icon-box:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 14px 35px rgba(0,0,0,0.6);
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
 }
 
 .icon-box i {
-  font-size: 50px;
+  font-size: 48px;
   margin-bottom: 10px;
   color: var(--accent-secondary);
   animation: iconFloat 3s ease-in-out infinite;
@@ -123,11 +123,10 @@ h1 {
   font-weight: bold;
 }
 
-/* icon float animation */
 @keyframes iconFloat {
-  0% { transform: translateY(0px);}
+  0% { transform: translateY(0);}
   50% { transform: translateY(-6px);}
-  100% { transform: translateY(0px);}
+  100% { transform: translateY(0);}
 }
 
 @keyframes iconBounce {
@@ -138,7 +137,9 @@ h1 {
 
 /* ---------- MODAL ---------- */
 .modal {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
@@ -149,23 +150,22 @@ h1 {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal.show {
-  display: flex;
+  visibility: visible;
   opacity: 1;
 }
 
 .modal-content {
   background: var(--bg-card);
   border-radius: 14px;
-  padding: 30px;
+  padding: 25px;
   max-width: 600px;
   width: 90%;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
   text-align: left;
   transform: scale(0.8);
   transition: transform 0.3s ease;
@@ -202,6 +202,42 @@ h1 {
   background: var(--accent-success);
 }
 
+/* ---------- DO NOT PRESS BUTTON ---------- */
+.easter-egg-btn {
+  margin: 30px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.easter-egg-btn:hover {
+  background: var(--accent-secondary);
+}
+
+#giantCat {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 10rem;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #ffcc00;
+  z-index: 2000;
+  user-select: none;
+}
+#giantCat span {
+  display: block;
+  font-size: 2rem;
+  color: #ffffff;
+  margin-top: 20px;
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:600px){
   .icon-box { width: 130px; height: 130px;}
@@ -209,6 +245,8 @@ h1 {
   h1 { font-size: 40px;}
   .server-name { font-size: 20px;}
   .about-title { font-size: 26px;}
+  #giantCat { font-size: 6rem; }
+  #giantCat span { font-size: 1.2rem;}
 }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -249,6 +287,9 @@ h1 {
       <span>Mod of the Week</span>
     </div>
   </div>
+
+  <!-- Easter Egg Button -->
+  <button class="easter-egg-btn" onclick="showCat()">Do Not Press</button>
 </div>
 
 <!-- MODALS -->
@@ -288,30 +329,30 @@ h1 {
   <div class="modal-content">
     <button class="close-btn" onclick="closeModal('modModal')">X</button>
     <h2>Mod of the Week</h2>
-    <p>This week’s outstanding moderator is <strong>｡ﾟ•⚔ 𝓒𝓻𝓲𝓽𝓲𝓬𝓪𝓵 ⚔•ﾟ｡</strong>! 🎉
-       Thank you for keeping the server safe and fun for everyone.</p>
+    <p>This week’s outstanding moderator is <strong>｡ﾟ•⚔ 𝓒𝓻𝓲𝓽𝓲𝓬𝓪𝓵 ⚔•ﾟ｡</strong>! 🎉 Thank you for keeping the server safe and fun for everyone.</p>
   </div>
 </div>
 
+<!-- GIANT CAT EASTER EGG -->
+<div id="giantCat">🐱<span>Lemme play fisch with my cat friends</span></div>
+
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const modals = document.querySelectorAll('.modal');
-  modals.forEach(m => m.classList.remove('show'));
+/* ---------- MODAL FUNCTIONS ---------- */
+const openModal = id => document.getElementById(id).classList.add('show');
+const closeModal = id => document.getElementById(id).classList.remove('show');
+window.addEventListener('click', e => {
+  if(e.target.classList.contains('modal')) e.target.classList.remove('show');
 });
 
-function openModal(id) {
-  document.getElementById(id).classList.add('show');
+/* ---------- EASTER EGG ---------- */
+const giantCat = document.getElementById('giantCat');
+function showCat() {
+  giantCat.style.display = 'block';
 }
-
-function closeModal(id) {
-  document.getElementById(id).classList.remove('show');
-}
-
-window.addEventListener('click', function(e){
-  const modals = document.querySelectorAll('.modal');
-  modals.forEach(modal => {
-    if(e.target === modal) modal.classList.remove('show');
-  });
+window.addEventListener('click', e => {
+  if(e.target !== giantCat && e.target.className !== 'easter-egg-btn') {
+    giantCat.style.display = 'none';
+  }
 });
 </script>
 
