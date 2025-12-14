@@ -6,10 +6,11 @@
 
 <style>
 :root {
-  --accent: #8a2be2;
-  --accent-soft: rgba(138,43,226,0.4);
+  --accent-maintenance: #ff4500; /* red-orange */
+  --accent-events: #00bfff;      /* blue */
+  --accent-updates: #32cd32;     /* green */
+  --accent-staff: #ff69b4;       /* pink */
   --bg-dark: #0b0b0f;
-  --panel: #12121a;
 }
 
 /* ---------- GLOBAL ---------- */
@@ -19,7 +20,7 @@ body {
   font-family: "Segoe UI", Arial, sans-serif;
   padding: 40px;
   min-height: 100vh;
-  animation: bgPulse 10s infinite alternate;
+  animation: bgPulse 15s infinite alternate;
 }
 
 @keyframes bgPulse {
@@ -31,119 +32,74 @@ h1 {
   text-align: center;
   font-size: 36px;
   letter-spacing: 4px;
-  color: var(--accent);
-  text-shadow: 0 0 15px var(--accent-soft);
-  animation: glow 2.5s infinite alternate;
+  color: #8a2be2;
+  text-shadow: 0 0 15px rgba(138,43,226,0.4);
+  margin-bottom: 50px;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px var(--accent-soft); }
-  to { text-shadow: 0 0 25px var(--accent); }
-}
-
-/* ---------- NEWS CARD ---------- */
-#newsBox {
+/* ---------- NEWS CARDS ---------- */
+.news-card {
   background: linear-gradient(145deg, #151520, #0e0e15);
-  padding: 25px;
-  border-left: 5px solid var(--accent);
-  margin-top: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.5);
-  animation: float 6s ease-in-out infinite;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+  border-left: 5px solid;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
 }
 
+.news-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 35px rgba(255,255,255,0.2);
+}
+
+/* ---------- CATEGORY COLORS ---------- */
+.news-card.category-maintenance { border-color: var(--accent-maintenance); }
+.news-card.category-events { border-color: var(--accent-events); }
+.news-card.category-updates { border-color: var(--accent-updates); }
+.news-card.category-staff { border-color: var(--accent-staff); }
+
+/* ---------- HEADLINE ---------- */
+.news-headline {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.news-card.category-maintenance .news-headline { color: var(--accent-maintenance); }
+.news-card.category-events .news-headline { color: var(--accent-events); }
+.news-card.category-updates .news-headline { color: var(--accent-updates); }
+.news-card.category-staff .news-headline { color: var(--accent-staff); }
+
+.news-headline {
+  text-shadow: 0 0 5px rgba(255,255,255,0.1);
+}
+
+/* ---------- BODY ---------- */
+.news-body {
+  font-size: 16px;
+  line-height: 1.6;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.news-card.expanded .news-body {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* ---------- FLOATING EFFECT ---------- */
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(-5px); }
 }
 
-#newsText {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* ---------- BUTTON ---------- */
-button {
-  margin-top: 20px;
-  padding: 12px 22px;
-  background: linear-gradient(135deg, #9a4dff, #6a1bbd);
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 8px;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 0 15px var(--accent-soft);
-}
-
-button:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 0 25px var(--accent);
-}
-
-button::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255,255,255,0.3);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.5s, height 0.5s;
-}
-
-button:active::after {
-  width: 300px;
-  height: 300px;
-}
-
-/* ---------- EDITOR ---------- */
-#editor {
-  margin-top: 25px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease;
-}
-
-#editor.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-textarea {
-  width: 100%;
-  height: 220px;
-  background: #0f0f18;
-  color: white;
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 15px;
-  font-size: 16px;
-  resize: none;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.6);
-}
-
-textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 15px var(--accent-soft);
-}
-
-/* ---------- SAVE FEEDBACK ---------- */
-#saved {
-  margin-top: 10px;
-  color: #7CFC98;
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-#saved.show {
-  opacity: 1;
+.news-card {
+  animation: float 6s ease-in-out infinite;
 }
 </style>
 </head>
@@ -152,34 +108,41 @@ textarea:focus {
 
 <h1>OFFICIAL ABYSS NEWS</h1>
 
-<div id="newsBox">
-  <p id="newsText">No official updates at this time.</p>
+<!-- ---------- MAINTENANCE ---------- -->
+<div class="news-card category-maintenance" onclick="toggleCard(this)">
+  <div class="news-headline">Server Maintenance Tonight</div>
+  <div class="news-body">
+    Abyss servers will be down from 11:00 PM to 1:00 AM UTC. Please save your progress.
+  </div>
 </div>
 
-<button onclick="unlockEditor()">Edit</button>
+<!-- ---------- EVENTS ---------- -->
+<div class="news-card category-events" onclick="toggleCard(this)">
+  <div class="news-headline">Community Abyss Challenge</div>
+  <div class="news-body">
+    Join our weekend event! Complete challenges to earn rare rewards and show off your skills.
+  </div>
+</div>
 
-<div id="editor">
-  <textarea id="newsInput"></textarea><br>
-  <button onclick="saveNews()">Save Update</button>
-  <div id="saved">✔ Update Saved</div>
+<!-- ---------- UPDATES ---------- -->
+<div class="news-card category-updates" onclick="toggleCard(this)">
+  <div class="news-headline">New Combat System Released</div>
+  <div class="news-body">
+    Updated combat mechanics, new weapons, and improved AI behavior are now live for all players.
+  </div>
+</div>
+
+<!-- ---------- STAFF APPLICATIONS ---------- -->
+<div class="news-card category-staff" onclick="toggleCard(this)">
+  <div class="news-headline">Staff Applications Open</div>
+  <div class="news-body">
+    We are accepting new staff applications! Apply to become a moderator or community helper.
+  </div>
 </div>
 
 <script>
-function unlockEditor() {
-  const editor = document.getElementById("editor");
-  editor.classList.add("show");
-  document.getElementById("newsInput").value =
-    document.getElementById("newsText").innerText;
-}
-
-function saveNews() {
-  document.getElementById("newsText").innerText =
-    document.getElementById("newsInput").value;
-
-  const saved = document.getElementById("saved");
-  saved.classList.add("show");
-
-  setTimeout(() => saved.classList.remove("show"), 2000);
+function toggleCard(card) {
+  card.classList.toggle("expanded");
 }
 </script>
 
