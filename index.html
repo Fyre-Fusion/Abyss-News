@@ -2,149 +2,181 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Official Abyss News</title>
-
+<title>Official Abyss Wiki</title>
 <style>
 :root {
-  --accent-maintenance: #ff4500; /* red-orange */
-  --accent-events: #00bfff;      /* blue */
-  --accent-updates: #32cd32;     /* green */
-  --accent-staff: #ff69b4;       /* pink */
+  --accent-maintenance: #ff4500;
+  --accent-events: #00bfff;
+  --accent-updates: #32cd32;
+  --accent-staff: #ff69b4;
   --bg-dark: #0b0b0f;
+  --text-light: #f5f5f5;
+  --text-muted: #cccccc;
 }
 
 /* ---------- GLOBAL ---------- */
 body {
-  background: radial-gradient(circle at top, #13131d, var(--bg-dark));
-  color: white;
+  background: var(--bg-dark);
+  color: var(--text-light);
   font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--accent-events);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
   padding: 40px;
-  min-height: 100vh;
-  animation: bgPulse 15s infinite alternate;
 }
 
-@keyframes bgPulse {
-  from { background-position: 0% 0%; }
-  to { background-position: 100% 100%; }
-}
-
+/* ---------- HEADER ---------- */
 h1 {
   text-align: center;
-  font-size: 36px;
-  letter-spacing: 4px;
+  font-size: 42px;
   color: #8a2be2;
-  text-shadow: 0 0 15px rgba(138,43,226,0.4);
   margin-bottom: 50px;
 }
 
-/* ---------- NEWS CARDS ---------- */
-.news-card {
-  background: linear-gradient(145deg, #151520, #0e0e15);
-  padding: 20px 25px;
+/* ---------- WIKI SECTIONS ---------- */
+section {
+  margin-bottom: 50px;
+}
+
+section h2 {
+  font-size: 28px;
+  border-bottom: 2px solid #444;
+  padding-bottom: 8px;
   margin-bottom: 20px;
-  border-left: 5px solid;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  overflow: hidden;
 }
 
-.news-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 35px rgba(255,255,255,0.2);
-}
-
-/* ---------- CATEGORY COLORS ---------- */
-.news-card.category-maintenance { border-color: var(--accent-maintenance); }
-.news-card.category-events { border-color: var(--accent-events); }
-.news-card.category-updates { border-color: var(--accent-updates); }
-.news-card.category-staff { border-color: var(--accent-staff); }
-
-/* ---------- HEADLINE ---------- */
-.news-headline {
+section h3 {
   font-size: 22px;
-  font-weight: bold;
+  margin-top: 20px;
   margin-bottom: 10px;
+  color: var(--accent-events);
 }
 
-.news-card.category-maintenance .news-headline { color: var(--accent-maintenance); }
-.news-card.category-events .news-headline { color: var(--accent-events); }
-.news-card.category-updates .news-headline { color: var(--accent-updates); }
-.news-card.category-staff .news-headline { color: var(--accent-staff); }
-
-.news-headline {
-  text-shadow: 0 0 5px rgba(255,255,255,0.1);
-}
-
-/* ---------- BODY ---------- */
-.news-body {
+/* ---------- WIKI CONTENT ---------- */
+p {
   font-size: 16px;
-  line-height: 1.6;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: all 0.4s ease;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  color: var(--text-light);
 }
 
-.news-card.expanded .news-body {
-  max-height: 500px;
-  opacity: 1;
+ul {
+  margin-left: 20px;
 }
 
-/* ---------- FLOATING EFFECT ---------- */
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+code {
+  background: #111;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
 }
 
-.news-card {
-  animation: float 6s ease-in-out infinite;
+/* ---------- TABLE OF CONTENTS ---------- */
+.toc {
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.toc h3 {
+  margin-top: 0;
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc li {
+  margin-bottom: 8px;
+}
+
+/* ---------- EXPANDABLE DETAILS ---------- */
+details {
+  background: #111;
+  padding: 12px 15px;
+  border-left: 4px solid var(--accent-events);
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+details summary {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+details[open] {
+  border-color: var(--accent-updates);
 }
 </style>
 </head>
-
 <body>
 
-<h1>OFFICIAL ABYSS NEWS</h1>
+<div class="container">
+  <h1>OFFICIAL ABYSS WIKI</h1>
 
-<!-- ---------- MAINTENANCE ---------- -->
-<div class="news-card category-maintenance" onclick="toggleCard(this)">
-  <div class="news-headline">Maintenance</div>
-  <div class="news-body">
-    Nothing here.
+  <!-- ---------- TABLE OF CONTENTS ---------- -->
+  <div class="toc">
+    <h3>Contents</h3>
+    <ul>
+      <li><a href="#maintenance">Maintenance</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#updates">Updates</a></li>
+      <li><a href="#staff">Staff Applications</a></li>
+    </ul>
   </div>
-</div>
 
-<!-- ---------- EVENTS ---------- -->
-<div class="news-card category-events" onclick="toggleCard(this)">
-  <div class="news-headline">Events</div>
-  <div class="news-body">
-    Nothing here.
-  </div>
-</div>
+  <!-- ---------- MAINTENANCE ---------- -->
+  <section id="maintenance">
+    <h2>Maintenance</h2>
+    <details>
+      <summary>Nothing here</summary>
+      <p>This section currently has no official updates regarding maintenance.</p>
+    </details>
+  </section>
 
-<!-- ---------- UPDATES ---------- -->
-<div class="news-card category-updates" onclick="toggleCard(this)">
-  <div class="news-headline">Updates</div>
-  <div class="news-body">
-    Nothing here.
-  </div>
-</div>
+  <!-- ---------- EVENTS ---------- -->
+  <section id="events">
+    <h2>Events</h2>
+    <details>
+      <summary>Nothing here</summary>
+      <p>No events have been announced at this time.</p>
+    </details>
+  </section>
 
-<!-- ---------- STAFF APPLICATIONS ---------- -->
-<div class="news-card category-staff" onclick="toggleCard(this)">
-  <div class="news-headline">Staff Applications</div>
-  <div class="news-body">
-    Nothing here.
-  </div>
-</div>
+  <!-- ---------- UPDATES ---------- -->
+  <section id="updates">
+    <h2>Updates</h2>
+    <details>
+      <summary>Nothing here</summary>
+      <p>No updates are available at the moment.</p>
+    </details>
+  </section>
 
-<script>
-function toggleCard(card) {
-  card.classList.toggle("expanded");
-}
-</script>
+  <!-- ---------- STAFF APPLICATIONS ---------- -->
+  <section id="staff">
+    <h2>Staff Applications</h2>
+    <details>
+      <summary>Nothing here</summary>
+      <p>No staff applications have been posted yet.</p>
+    </details>
+  </section>
+</div>
 
 </body>
 </html>
