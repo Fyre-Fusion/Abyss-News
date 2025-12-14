@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Official Abyss Wiki</title>
-
 <style>
 :root {
   --bg-main: #0b0d12;
@@ -16,6 +15,7 @@
   --border-soft: #222;
 }
 
+/* ---------- GLOBAL ---------- */
 body {
   margin: 0;
   background: linear-gradient(180deg, #090b10, #0e1018);
@@ -24,53 +24,25 @@ body {
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: auto;
-  padding: 100px 30px 60px;
-}
-
-@keyframes float {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-14px); }
-  100% { transform: translateY(0px); }
-}
-
-.hero-image {
-  display: block;
-  margin: 0 auto 50px;
-  max-width: 100%;
-  border-radius: 18px;
-  box-shadow: 0 0 35px rgba(138,43,226,0.35);
-  animation: float 8s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.04); }
-  100% { opacity: 0.6; transform: scale(1); }
-}
-
-.pulse {
-  animation: pulse 2.2s infinite ease-in-out;
+  padding: 100px 20px 60px;
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
   font-size: 46px;
-  letter-spacing: 2px;
   color: var(--accent-primary);
   margin-bottom: 10px;
 }
 
 .server-name {
-  text-align: center;
   font-size: 22px;
   color: var(--accent-secondary);
   margin-bottom: 60px;
 }
 
 .about-title {
-  text-align: center;
   font-size: 30px;
   margin-bottom: 20px;
   color: var(--accent-primary);
@@ -90,39 +62,67 @@ h1 {
   line-height: 1.8;
 }
 
-section {
-  background: var(--bg-card);
-  border: 1px solid var(--border-soft);
-  border-radius: 14px;
-  padding: 30px;
-  margin-bottom: 40px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+/* ---------- ICON BOXES ---------- */
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 60px;
 }
 
-section h2 {
-  margin-top: 0;
-  font-size: 28px;
-  border-bottom: 1px solid #2a2a2a;
-  padding-bottom: 10px;
+.icon-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.icon-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+.icon-box i {
+  font-size: 50px;
+  margin-bottom: 10px;
   color: var(--accent-secondary);
 }
 
+.icon-box span {
+  font-size: 18px;
+  color: var(--text-main);
+  font-weight: bold;
+}
+
+/* ---------- DETAILS ---------- */
 details {
-  margin-top: 20px;
-  background: #0f1220;
-  border-radius: 10px;
-  padding: 18px 22px;
-  border-left: 4px solid var(--accent-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 20px 25px;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
 }
 
 details[open] {
-  border-left-color: var(--accent-success);
-  background: #101529;
+  border-left: 4px solid var(--accent-success);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
 }
 
 details summary {
-  cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   list-style: none;
 }
@@ -132,24 +132,21 @@ details summary::-webkit-details-marker {
 }
 
 details p {
-  margin-top: 15px;
+  margin-top: 12px;
   color: var(--text-muted);
   line-height: 1.7;
 }
 </style>
+<!-- Optional: icons from Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
 
 <div class="container">
-
-  <!-- FLOATING IMAGE -->
-  <img src="abyss-pic.png" alt="Abyss Artwork" class="hero-image">
-
   <h1>OFFICIAL ABYSS WIKI</h1>
-  <div class="server-name pulse">Abyss Server</div>
+  <div class="server-name">Abyss Server</div>
 
-  <div class="about-title pulse">About The Server</div>
+  <div class="about-title">About The Server</div>
   <div class="about-card">
     <p>
       Abyss Server is a dark-themed, community-driven experience focused on
@@ -159,37 +156,46 @@ details p {
     </p>
   </div>
 
-  <section>
-    <h2>Maintenance</h2>
-    <details>
-      <summary>No Current Notices</summary>
-      <p>No maintenance is currently scheduled.</p>
-    </details>
-  </section>
+  <!-- ICON BOX GRID -->
+  <div class="icon-grid">
+    <div class="icon-box" onclick="document.getElementById('maintenance').open = true">
+      <i class="fas fa-tools"></i>
+      <span>Maintenance</span>
+    </div>
+    <div class="icon-box" onclick="document.getElementById('events').open = true">
+      <i class="fas fa-calendar-star"></i>
+      <span>Events</span>
+    </div>
+    <div class="icon-box" onclick="document.getElementById('updates').open = true">
+      <i class="fas fa-arrow-up-right-dots"></i>
+      <span>Updates</span>
+    </div>
+    <div class="icon-box" onclick="document.getElementById('staff').open = true">
+      <i class="fas fa-user-shield"></i>
+      <span>Staff</span>
+    </div>
+  </div>
 
-  <section>
-    <h2>Events</h2>
-    <details>
-      <summary>No Active Events</summary>
-      <p>No events are running at this time.</p>
-    </details>
-  </section>
+  <!-- DETAILS CARDS -->
+  <details id="maintenance">
+    <summary>Maintenance</summary>
+    <p>No maintenance is currently scheduled.</p>
+  </details>
 
-  <section>
-    <h2>Updates</h2>
-    <details>
-      <summary>No Recent Updates</summary>
-      <p>No updates are available right now.</p>
-    </details>
-  </section>
+  <details id="events">
+    <summary>Events</summary>
+    <p>No events are running at this time.</p>
+  </details>
 
-  <section>
-    <h2>Staff Applications</h2>
-    <details>
-      <summary>Applications Closed</summary>
-      <p>Staff applications are currently closed.</p>
-    </details>
-  </section>
+  <details id="updates">
+    <summary>Updates</summary>
+    <p>No updates are available right now.</p>
+  </details>
+
+  <details id="staff">
+    <summary>Staff Applications</summary>
+    <p>Staff applications are currently closed.</p>
+  </details>
 
 </div>
 
