@@ -16,7 +16,6 @@
   --border-soft: #222;
 }
 
-/* ---------- GLOBAL ---------- */
 body {
   margin: 0;
   background: linear-gradient(180deg, #090b10, #0e1018);
@@ -30,16 +29,21 @@ body {
   padding: 100px 30px 60px;
 }
 
-/* ---------- IMAGE ---------- */
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-14px); }
+  100% { transform: translateY(0px); }
+}
+
 .hero-image {
   display: block;
   margin: 0 auto 50px;
   max-width: 100%;
   border-radius: 18px;
   box-shadow: 0 0 35px rgba(138,43,226,0.35);
+  animation: float 8s ease-in-out infinite;
 }
 
-/* ---------- PULSE ---------- */
 @keyframes pulse {
   0% { opacity: 0.6; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.04); }
@@ -50,7 +54,6 @@ body {
   animation: pulse 2.2s infinite ease-in-out;
 }
 
-/* ---------- HEADER ---------- */
 h1 {
   text-align: center;
   font-size: 46px;
@@ -66,7 +69,6 @@ h1 {
   margin-bottom: 60px;
 }
 
-/* ---------- ABOUT ---------- */
 .about-title {
   text-align: center;
   font-size: 30px;
@@ -88,7 +90,6 @@ h1 {
   line-height: 1.8;
 }
 
-/* ---------- SECTIONS ---------- */
 section {
   background: var(--bg-card);
   border: 1px solid var(--border-soft);
@@ -106,7 +107,6 @@ section h2 {
   color: var(--accent-secondary);
 }
 
-/* ---------- DETAILS ---------- */
 details {
   margin-top: 20px;
   background: #0f1220;
@@ -143,7 +143,7 @@ details p {
 
 <div class="container">
 
-  <!-- IMAGE -->
+  <!-- FLOATING IMAGE -->
   <img src="abyss-pic.png" alt="Abyss Artwork" class="hero-image">
 
   <h1>OFFICIAL ABYSS WIKI</h1>
