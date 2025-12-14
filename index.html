@@ -12,9 +12,9 @@
   --accent-success: #32cd32;
   --text-main: #f0f0f0;
   --text-muted: #a0a0a0;
-  --border-soft: #222;
 }
 
+/* ---------- GLOBAL ---------- */
 body {
   margin: 0;
   background: linear-gradient(180deg, #090b10, #0e1018);
@@ -49,7 +49,7 @@ h1 {
 
 .about-card {
   background: var(--bg-card);
-  border: 1px solid var(--border-soft);
+  border: 1px solid #222;
   border-radius: 14px;
   padding: 30px;
   margin-bottom: 60px;
@@ -72,7 +72,7 @@ h1 {
 
 .icon-box {
   background: var(--bg-card);
-  border: 1px solid var(--border-soft);
+  border: 1px solid #222;
   border-radius: 16px;
   width: 160px;
   height: 160px;
@@ -102,23 +102,40 @@ h1 {
   font-weight: bold;
 }
 
-/* ---------- CARDS ---------- */
-.card {
-  display: none; /* hidden by default */
+/* ---------- MODAL ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(11,13,18,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
   background: var(--bg-card);
-  border: 1px solid var(--border-soft);
   border-radius: 14px;
-  padding: 25px;
-  margin: 20px auto;
+  padding: 30px;
   max-width: 600px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  width: 90%;
   position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
   text-align: left;
 }
 
-.card h2 {
-  margin-top: 0;
+.modal-content h2 {
   color: var(--accent-secondary);
+  margin-top: 0;
+}
+
+.modal-content p {
+  color: var(--text-muted);
+  line-height: 1.7;
 }
 
 .close-btn {
@@ -157,63 +174,76 @@ h1 {
     </p>
   </div>
 
-  <!-- ICON BOX GRID -->
+  <!-- ICON GRID -->
   <div class="icon-grid">
-    <div class="icon-box" onclick="openCard('maintenance')">
+    <div class="icon-box" onclick="openModal('maintenanceModal')">
       <i class="fas fa-tools"></i>
       <span>Maintenance</span>
     </div>
-    <div class="icon-box" onclick="openCard('events')">
-      <i class="fas fa-party-hat"></i> <!-- Party hat icon for events -->
+    <div class="icon-box" onclick="openModal('eventsModal')">
+      <i class="fas fa-party-hat"></i> <!-- Party hat for events -->
       <span>Events</span>
     </div>
-    <div class="icon-box" onclick="openCard('updates')">
+    <div class="icon-box" onclick="openModal('updatesModal')">
       <i class="fas fa-arrow-up-right-dots"></i>
       <span>Updates</span>
     </div>
-    <div class="icon-box" onclick="openCard('staff')">
+    <div class="icon-box" onclick="openModal('staffModal')">
       <i class="fas fa-user-shield"></i>
       <span>Staff</span>
     </div>
   </div>
+</div>
 
-  <!-- CARDS -->
-  <div class="card" id="maintenance">
-    <button class="close-btn" onclick="closeCard('maintenance')">X</button>
+<!-- MODALS -->
+<div class="modal" id="maintenanceModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal('maintenanceModal')">X</button>
     <h2>Maintenance</h2>
     <p>No maintenance is currently scheduled.</p>
   </div>
+</div>
 
-  <div class="card" id="events">
-    <button class="close-btn" onclick="closeCard('events')">X</button>
+<div class="modal" id="eventsModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal('eventsModal')">X</button>
     <h2>Events</h2>
     <p>No events are running at this time.</p>
   </div>
+</div>
 
-  <div class="card" id="updates">
-    <button class="close-btn" onclick="closeCard('updates')">X</button>
+<div class="modal" id="updatesModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal('updatesModal')">X</button>
     <h2>Updates</h2>
     <p>No updates are available right now.</p>
   </div>
+</div>
 
-  <div class="card" id="staff">
-    <button class="close-btn" onclick="closeCard('staff')">X</button>
+<div class="modal" id="staffModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal('staffModal')">X</button>
     <h2>Staff Applications</h2>
     <p>Staff applications are currently closed.</p>
   </div>
-
 </div>
 
 <script>
-function openCard(id) {
-  document.getElementById(id).style.display = 'block';
-  // scroll to card smoothly
-  document.getElementById(id).scrollIntoView({behavior: "smooth"});
+function openModal(id) {
+  document.getElementById(id).style.display = 'flex';
 }
 
-function closeCard(id) {
+function closeModal(id) {
   document.getElementById(id).style.display = 'none';
 }
+
+// Optional: close modal when clicking outside content
+window.addEventListener('click', function(e){
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach(modal => {
+    if(e.target === modal) modal.style.display = 'none';
+  });
+});
 </script>
 
 </body>
