@@ -3,179 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <title>Official Abyss Wiki</title>
+
 <style>
 :root {
-  --accent-maintenance: #ff4500;
-  --accent-events: #00bfff;
-  --accent-updates: #32cd32;
-  --accent-staff: #ff69b4;
-  --bg-dark: #0b0b0f;
-  --text-light: #f5f5f5;
-  --text-muted: #cccccc;
+  --bg-main: #0b0d12;
+  --bg-card: #131722;
+  --accent-primary: #8a2be2;
+  --accent-secondary: #00bfff;
+  --accent-success: #32cd32;
+  --text-main: #f0f0f0;
+  --text-muted: #a0a0a0;
+  --border-soft: #222;
 }
 
 /* ---------- GLOBAL ---------- */
 body {
-  background: var(--bg-dark);
-  color: var(--text-light);
-  font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
-  padding: 0;
-}
-
-a {
-  color: var(--accent-events);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
+  background: linear-gradient(180deg, #090b10, #0e1018);
+  color: var(--text-main);
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 900px;
   margin: auto;
-  padding: 40px;
+  padding: 60px 30px;
 }
 
 /* ---------- HEADER ---------- */
 h1 {
   text-align: center;
-  font-size: 42px;
-  color: #8a2be2;
-  margin-bottom: 50px;
+  font-size: 44px;
+  letter-spacing: 2px;
+  color: var(--accent-primary);
+  margin-bottom: 70px;
 }
 
-/* ---------- WIKI SECTIONS ---------- */
+/* ---------- SECTIONS ---------- */
 section {
-  margin-bottom: 50px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
 }
 
 section h2 {
-  font-size: 28px;
-  border-bottom: 2px solid #444;
-  padding-bottom: 8px;
-  margin-bottom: 20px;
-}
-
-section h3 {
-  font-size: 22px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  color: var(--accent-events);
-}
-
-/* ---------- WIKI CONTENT ---------- */
-p {
-  font-size: 16px;
-  line-height: 1.8;
-  margin-bottom: 15px;
-  color: var(--text-light);
-}
-
-ul {
-  margin-left: 20px;
-}
-
-code {
-  background: #111;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-family: monospace;
-}
-
-/* ---------- TABLE OF CONTENTS ---------- */
-.toc {
-  background: #111;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 40px;
-}
-
-.toc h3 {
   margin-top: 0;
+  font-size: 28px;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 10px;
+  color: var(--accent-secondary);
 }
 
-.toc ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.toc li {
-  margin-bottom: 8px;
-}
-
-/* ---------- EXPANDABLE DETAILS ---------- */
+/* ---------- DETAILS ---------- */
 details {
-  background: #111;
-  padding: 12px 15px;
-  border-left: 4px solid var(--accent-events);
-  border-radius: 6px;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  background: #0f1220;
+  border-radius: 10px;
+  padding: 18px 22px;
+  border-left: 4px solid var(--accent-secondary);
+  transition: all 0.3s ease;
+}
+
+details[open] {
+  border-left-color: var(--accent-success);
+  background: #101529;
 }
 
 details summary {
   cursor: pointer;
-  font-weight: bold;
   font-size: 18px;
+  font-weight: 600;
+  list-style: none;
 }
 
-details[open] {
-  border-color: var(--accent-updates);
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details p {
+  margin-top: 15px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ---------- TEXT ---------- */
+p {
+  font-size: 16px;
+}
+
+/* ---------- FOOTER FADE ---------- */
+body::after {
+  content: "";
+  display: block;
+  height: 80px;
 }
 </style>
 </head>
+
 <body>
 
 <div class="container">
+
   <h1>OFFICIAL ABYSS WIKI</h1>
 
-  <!-- ---------- TABLE OF CONTENTS ---------- -->
-  <div class="toc">
-    <h3>Contents</h3>
-    <ul>
-      <li><a href="#maintenance">Maintenance</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#updates">Updates</a></li>
-      <li><a href="#staff">Staff Applications</a></li>
-    </ul>
-  </div>
-
-  <!-- ---------- MAINTENANCE ---------- -->
-  <section id="maintenance">
+  <section>
     <h2>Maintenance</h2>
     <details>
-      <summary>Nothing here</summary>
-      <p>This section currently has no official updates regarding maintenance.</p>
+      <summary>No Current Notices</summary>
+      <p>
+        There are currently no scheduled or ongoing maintenance operations.
+        Any future downtime will be announced here.
+      </p>
     </details>
   </section>
 
-  <!-- ---------- EVENTS ---------- -->
-  <section id="events">
+  <section>
     <h2>Events</h2>
     <details>
-      <summary>Nothing here</summary>
-      <p>No events have been announced at this time.</p>
+      <summary>No Active Events</summary>
+      <p>
+        No events are running at this time. Check back regularly for
+        announcements and limited-time activities.
+      </p>
     </details>
   </section>
 
-  <!-- ---------- UPDATES ---------- -->
-  <section id="updates">
+  <section>
     <h2>Updates</h2>
     <details>
-      <summary>Nothing here</summary>
-      <p>No updates are available at the moment.</p>
+      <summary>No Recent Updates</summary>
+      <p>
+        There are no recent updates available. Patch notes and changes
+        will be documented here when released.
+      </p>
     </details>
   </section>
 
-  <!-- ---------- STAFF APPLICATIONS ---------- -->
-  <section id="staff">
+  <section>
     <h2>Staff Applications</h2>
     <details>
-      <summary>Nothing here</summary>
-      <p>No staff applications have been posted yet.</p>
+      <summary>Applications Closed</summary>
+      <p>
+        Staff applications are currently closed.
+        Openings will be announced when positions become available.
+      </p>
     </details>
   </section>
+
 </div>
 
 </body>
