@@ -202,42 +202,24 @@ h1 {
   background: var(--accent-success);
 }
 
-/* ---------- DO NOT PRESS BUTTON ---------- */
-.easter-egg-btn {
-  margin: 30px 0;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  background: var(--accent-primary);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.easter-egg-btn:hover {
-  background: var(--accent-secondary);
-}
-
 /* ---------- GIANT CAT ---------- */
 #giantCat {
   display: none;
   position: fixed;
   top: 50%;
   left: 50%;
-  font-size: 25rem; /* huge */
+  font-size: 50vw; /* MASSIVE, almost fullscreen */
   transform: translate(-50%, -50%);
   text-align: center;
   color: #ffcc00;
   z-index: 2000;
   user-select: none;
-  transition: transform 0.3s, opacity 0.3s;
+  transition: opacity 0.3s ease;
 }
-#giantCat span {
-  display: block;
-  font-size: 3rem;
+#catText {
+  font-size: 4vw;
   color: #ffffff;
-  margin-top: 20px;
+  margin-top: -8vw; /* positions text inside emoji area */
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -247,8 +229,8 @@ h1 {
   h1 { font-size: 40px;}
   .server-name { font-size: 20px;}
   .about-title { font-size: 26px;}
-  #giantCat { font-size: 12rem; }
-  #giantCat span { font-size: 1.5rem; }
+  #giantCat { font-size: 35vw; }
+  #catText { font-size: 5vw; margin-top: -6vw; }
 }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -290,8 +272,8 @@ h1 {
     </div>
   </div>
 
-  <!-- Easter Egg Button -->
-  <button class="easter-egg-btn" onclick="showCat()">Do Not Press</button>
+  <!-- Hidden Easter Egg Button -->
+  <button class="easter-egg-btn" id="eggBtn" style="display:none;" onclick="showCat()"></button>
 </div>
 
 <!-- MODALS -->
@@ -336,7 +318,10 @@ h1 {
 </div>
 
 <!-- GIANT CAT EASTER EGG -->
-<div id="giantCat">🐱<span>Lemme play fisch with my cat friends</span></div>
+<div id="giantCat">
+  🐱
+  <div id="catText">Lemme play fisch with my cat friends</div>
+</div>
 
 <script>
 /* ---------- MODAL FUNCTIONS ---------- */
@@ -348,18 +333,18 @@ window.addEventListener('click', e => {
 
 /* ---------- EASTER EGG ---------- */
 const giantCat = document.getElementById('giantCat');
-const eggBtn = document.querySelector('.easter-egg-btn');
+const eggBtn = document.getElementById('eggBtn');
 
 function showCat() {
   giantCat.style.display = 'block';
   giantCat.style.opacity = '1';
 }
 
-// Hide cat if clicked anywhere except the cat or the button
+// Hide cat if clicked anywhere except the cat itself
 window.addEventListener('click', e => {
   if (!giantCat.contains(e.target) && e.target !== eggBtn) {
     giantCat.style.opacity = '0';
-    setTimeout(() => { giantCat.style.display = 'none'; }, 300); // wait for fade out
+    setTimeout(() => { giantCat.style.display = 'none'; }, 300);
   }
 });
 </script>
