@@ -72,31 +72,34 @@ h1 { font-size: 48px; color: var(--accent-primary); margin-bottom: 10px; animati
   position: fixed;
   top: 50%;
   left: 50%;
-  font-size: 55vw; 
+  font-size: 40vw; /* smaller so text fits */
   transform: translate(-50%, -50%);
   text-align: center;
-  color: #ffcc00;
   z-index: 2000;
   user-select: none;
   transition: opacity 0.3s ease;
 }
-#catText { font-size:4vw; color:white; margin-top:-10vw; }
+#catText {
+  font-size: 3vw;
+  color:white;
+  margin-top:-15vw; /* move above cat emoji */
+  text-shadow: 2px 2px 5px black;
+}
 
 /* ---------- HIDDEN RED BUTTON ---------- */
 #redBtn {
   position: fixed;
-  top: 5px;
-  left: 5px;
-  width: 15px;
-  height: 15px;
+  top: 0px;
+  left: 0px;
+  width: 2px; /* tiny invisible button */
+  height: 2px;
   background: red;
-  border-radius: 50%;
   border: none;
   cursor: pointer;
-  opacity: 0.3; /* nearly invisible */
+  opacity: 0.1;
   z-index: 1000;
 }
-#redBtn:hover { opacity: 0.8; }
+#redBtn:hover { opacity: 0.5; }
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:600px){
@@ -105,8 +108,8 @@ h1 { font-size: 48px; color: var(--accent-primary); margin-bottom: 10px; animati
   h1 { font-size:40px; }
   .server-name { font-size:20px; }
   .about-title { font-size:26px; }
-  #giantCat { font-size:40vw; }
-  #catText { font-size:5vw; margin-top:-7vw; }
+  #giantCat { font-size:60vw; }
+  #catText { font-size:5vw; margin-top:-25vw; }
 }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
