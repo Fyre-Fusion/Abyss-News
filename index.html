@@ -15,7 +15,6 @@
   --border-soft: #222;
 }
 
-/* ---------- GLOBAL ---------- */
 body {
   margin: 0;
   background: linear-gradient(180deg, #090b10, #0e1018);
@@ -103,41 +102,43 @@ h1 {
   font-weight: bold;
 }
 
-/* ---------- DETAILS ---------- */
-details {
+/* ---------- CARDS ---------- */
+.card {
+  display: none; /* hidden by default */
   background: var(--bg-card);
   border: 1px solid var(--border-soft);
   border-radius: 14px;
-  padding: 20px 25px;
-  margin-bottom: 40px;
+  padding: 25px;
+  margin: 20px auto;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  cursor: pointer;
-}
-
-details[open] {
-  border-left: 4px solid var(--accent-success);
   box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  position: relative;
+  text-align: left;
 }
 
-details summary {
-  font-size: 20px;
-  font-weight: 600;
-  list-style: none;
+.card h2 {
+  margin-top: 0;
+  color: var(--accent-secondary);
 }
 
-details summary::-webkit-details-marker {
-  display: none;
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-details p {
-  margin-top: 12px;
-  color: var(--text-muted);
-  line-height: 1.7;
+.close-btn:hover {
+  background: var(--accent-success);
 }
 </style>
-<!-- Optional: icons from Font Awesome CDN -->
+<!-- Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -158,46 +159,62 @@ details p {
 
   <!-- ICON BOX GRID -->
   <div class="icon-grid">
-    <div class="icon-box" onclick="document.getElementById('maintenance').open = true">
+    <div class="icon-box" onclick="openCard('maintenance')">
       <i class="fas fa-tools"></i>
       <span>Maintenance</span>
     </div>
-    <div class="icon-box" onclick="document.getElementById('events').open = true">
-      <i class="fas fa-calendar-star"></i>
+    <div class="icon-box" onclick="openCard('events')">
+      <i class="fas fa-party-hat"></i> <!-- Party hat icon for events -->
       <span>Events</span>
     </div>
-    <div class="icon-box" onclick="document.getElementById('updates').open = true">
+    <div class="icon-box" onclick="openCard('updates')">
       <i class="fas fa-arrow-up-right-dots"></i>
       <span>Updates</span>
     </div>
-    <div class="icon-box" onclick="document.getElementById('staff').open = true">
+    <div class="icon-box" onclick="openCard('staff')">
       <i class="fas fa-user-shield"></i>
       <span>Staff</span>
     </div>
   </div>
 
-  <!-- DETAILS CARDS -->
-  <details id="maintenance">
-    <summary>Maintenance</summary>
+  <!-- CARDS -->
+  <div class="card" id="maintenance">
+    <button class="close-btn" onclick="closeCard('maintenance')">X</button>
+    <h2>Maintenance</h2>
     <p>No maintenance is currently scheduled.</p>
-  </details>
+  </div>
 
-  <details id="events">
-    <summary>Events</summary>
+  <div class="card" id="events">
+    <button class="close-btn" onclick="closeCard('events')">X</button>
+    <h2>Events</h2>
     <p>No events are running at this time.</p>
-  </details>
+  </div>
 
-  <details id="updates">
-    <summary>Updates</summary>
+  <div class="card" id="updates">
+    <button class="close-btn" onclick="closeCard('updates')">X</button>
+    <h2>Updates</h2>
     <p>No updates are available right now.</p>
-  </details>
+  </div>
 
-  <details id="staff">
-    <summary>Staff Applications</summary>
+  <div class="card" id="staff">
+    <button class="close-btn" onclick="closeCard('staff')">X</button>
+    <h2>Staff Applications</h2>
     <p>Staff applications are currently closed.</p>
-  </details>
+  </div>
 
 </div>
+
+<script>
+function openCard(id) {
+  document.getElementById(id).style.display = 'block';
+  // scroll to card smoothly
+  document.getElementById(id).scrollIntoView({behavior: "smooth"});
+}
+
+function closeCard(id) {
+  document.getElementById(id).style.display = 'none';
+}
+</script>
 
 </body>
 </html>
