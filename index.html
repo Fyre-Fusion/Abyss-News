@@ -82,6 +82,22 @@ h1 { font-size: 48px; color: var(--accent-primary); margin-bottom: 10px; animati
 }
 #catText { font-size:4vw; color:white; margin-top:-10vw; }
 
+/* ---------- HIDDEN RED BUTTON ---------- */
+#redBtn {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  width: 15px;
+  height: 15px;
+  background: red;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  opacity: 0.3; /* nearly invisible */
+  z-index: 1000;
+}
+#redBtn:hover { opacity: 0.8; }
+
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:600px){
   .icon-box { width:130px; height:130px; }
@@ -92,9 +108,6 @@ h1 { font-size: 48px; color: var(--accent-primary); margin-bottom: 10px; animati
   #giantCat { font-size:40vw; }
   #catText { font-size:5vw; margin-top:-7vw; }
 }
-
-/* ---------- HIDDEN CORNER ---------- */
-#hiddenCorner { position: fixed; top:0; left:0; width:50px; height:50px; z-index:100; }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -166,8 +179,8 @@ h1 { font-size: 48px; color: var(--accent-primary); margin-bottom: 10px; animati
 <!-- GIANT CAT -->
 <div id="giantCat">🐱<div id="catText">Lemme play fisch with my cat friends</div></div>
 
-<!-- HIDDEN CORNER CLICK AREA -->
-<div id="hiddenCorner"></div>
+<!-- HIDDEN RED BUTTON -->
+<button id="redBtn"></button>
 
 <script>
 /* ---------- MODALS ---------- */
@@ -177,25 +190,25 @@ window.addEventListener('click', e => { if(e.target.classList.contains('modal'))
 
 /* ---------- GIANT CAT ---------- */
 const giantCat = document.getElementById('giantCat');
-let cornerClicks = 0;
 
 function showCat() {
   giantCat.style.display = 'block';
   giantCat.style.opacity = '1';
 }
 
+// Click anywhere outside cat hides it
 window.addEventListener('click', e => {
-  if (!giantCat.contains(e.target)) {
+  if (!giantCat.contains(e.target) && e.target.id !== 'redBtn') {
     giantCat.style.opacity = '0';
     setTimeout(()=>{ giantCat.style.display='none'; }, 300);
   }
 });
 
-/* ---------- HIDDEN CORNER ---------- */
-const hiddenCorner = document.getElementById('hiddenCorner');
-hiddenCorner.addEventListener('click', e => {
-  cornerClicks++;
-  if(cornerClicks >= 3) { showCat(); cornerClicks = 0; }
+// Hidden red button triggers cat
+const redBtn = document.getElementById('redBtn');
+redBtn.addEventListener('click', e => {
+  e.stopPropagation(); // prevent window click from hiding immediately
+  showCat();
 });
 </script>
 </body>
